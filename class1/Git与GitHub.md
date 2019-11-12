@@ -82,7 +82,7 @@
   -查看远程仓库
        .git remote -v
   -创建远程仓库
-
+ 
      .git remote add origin  远程地址
          比如: git remote add origin git@github.com:nizp/2019-10-8.git 
 
