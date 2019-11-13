@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		body,
+		ul,
+		li {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+		}
+	</style>
+	<link rel="stylesheet" type="text/css" href="price.css" />
+
+</head>
+
+<body onselectstart="return false;">
+	<div class="wrap">
+		<div class="box">
+			<ul class="list">
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong>12.5元 </strong> 小计：<strong>0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong>10.5元 </strong> 小计：<strong>0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong>8.5元 </strong> 小计：<strong>0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong>8元 </strong> 小计：<strong>0元</strong>
+					</span>
+				</li>
+				<li>
+					<i></i>
+					<em>0</em>
+					<i></i>
+					<span>
+						单价：<strong>14.5元 </strong> 小计：<strong>0元</strong>
+					</span>
+				</li>
+			</ul>
+			<div class="info">
+				<span>商品公合计：<em>0</em>件</span>
+				<span>共花费了：<em>0</em>元</span>
+				<br />
+				<br />
+				<span>其中最贵的商品单价是：<em>0</em>元</span>
+			</div>
+		</div>
+	</div>
+	<script>
+		let lis = document.querySelectorAll('.list li')
+		let i1 = document.querySelectorAll('.list li i:nth-of-type(1)')
+		let em = document.querySelectorAll('.list li em')
+		let i2 = document.querySelectorAll('.list li i:nth-of-type(2)')
+		let st1 = document.querySelectorAll('.list li span strong:nth-of-type(1)')
+		let st2 = document.querySelectorAll('.list li span strong:nth-of-type(2)')
+		let hjj = document.querySelector('.info span:nth-of-type(1) em')
+		let hjy = document.querySelector('.info span:nth-of-type(2) em')
+		let zg = document.querySelector('.info span:nth-of-type(3) em')
+		// console.log(hjy)
+		for (let i = 0; i < lis.length; i++) {
+			let num = 1;
+			i2[i].onclick = function () {
+				//let jg = st1[i].innerText
+				//let xj = st2[i].innerText
+				em[i].innerText = num++
+				st2[i].innerText = parseFloat(st1[i].innerText) * em[i].innerText + '元'
+				fn()
+			}
+			i1[i].onclick = function () {
+				if (em[i].innerText > 0) {
+					em[i].innerText--
+					num--
+				}
+				st2[i].innerText = parseFloat(st1[i].innerText) * em[i].innerText + '元'
+				fn()
+			}
+		}
+		function fn() {
+			let ems = 0;
+			let st1Max = 0;
+			let st2s = 0;
+			for (let j = 0; j < em.length; j++) {
+				ems += parseFloat(em[j].innerText)
+				st2s += parseFloat(st2[j].innerText)
+				// console.log(st2[j].innerText)
+				if (parseFloat(st1[j].innerText) > st1Max) {
+					if (parseFloat(em[j].innerText) > 0) {
+						st1Max = parseFloat(st1[j].innerText)
+					}
+
+				}
+			}
+			hjj.innerText = ems
+			hjy.innerText = st2s
+			zg.innerText = st1Max
+		}
+	</script>
+</body>
+
+</html>
