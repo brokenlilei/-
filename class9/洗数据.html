@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            let str2 = '<span class="money clone">北京19990/月</span>';
+       
+      
+          (?:)表示非捕获分组，和捕获分组唯一的区别在于，非捕获分组匹配的值不会保存起来
+
+       */
+
+
+       //把标签删除，最后留下了文字
+    //    console.log(str.match(/[\u4e00-\u9fa5\d/月*]+/g));
+
+    // console.log(str2.match(/<[^>]+>/g));
+    // console.log(str.replace(/<[^>]+>/g,''));
+
+    let s = str.replace(/<[^>]+>/g,'').replace(/\n/g,''); 
+    box.innerText = s;
+
+    let ary = s.match(/\d+(?=(?:\/))/g);
+
+    let num = ary.reduce((pre,next)=>pre*1 + next*1,0)
+
+    console.log(num/ary.length);
+
+
+    // console.log(s.match(/\d+\//g).join('').split('/'));
+
+
+    //整个字符串都要符合123才被匹配，但是只要12
+    // console.log(/12(?=(?:3))/.exec('123'));  //12
+
+    // console.log(/12(?=(?:3))/.exec('123'));
+
+       
+    </script>
+</body>
+</html>
