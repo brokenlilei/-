@@ -1,0 +1,57 @@
+-<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+     <button  id="btn">按钮一</button>
+     <button>按钮二</button>
+     <button>按钮三</button>
+<body>
+    <script>
+    /*
+    闭包：
+       有人说函数就是一个闭包。闭包就是函数可以使用函数之外定义的变量
+
+       内部函数的作用域链仍然可以保持着对父函数活动对象的引用，就是闭包（closure）
+
+       (1)函数嵌套函数，
+       (2)子函数引用父函数的参数或者变量，
+       (3)并且子函数还被外界所引用，这时候子函数的作用链仍然保持着对父函数活动对象的引用，
+          父函数的参数和变量就不会被浏览器缩垃圾回收机制所回收，此时打印父函数的函数返回值，
+          会发现在返回值下面有一个scopes，这个scopes下面有个closure，它就是闭包（整个父级都形成了闭包环境）
+          父级的执行栈不会被销毁，此时打印父级的返回值查看scopes
+
+
+        全局的活动对象在关闭浏览器之后才会被销毁
+       */
+
+       //用闭包环境写选项卡：
+        const btns = document.querySelectorAll('button');
+           for( var i=0;i<btns.length;i++){
+               btns[i].index = i;
+               btns[i].onclick = function(){
+                   alert(this.index);
+               }
+           }
+           fn(i);
+        
+
+        // for(var i=0;i<5;i++){
+        //     (function(){
+        //         setTimeout(function(){
+        //             console.log(i);
+        //         },i*1000)
+        //     })(i)
+        // }
+
+        // console.log(i)
+
+
+        /*
+        当莫名其妙写了一个闭包时 ，解决方法是 释放内部变量；
+        栈溢出 => 清除内部变量。
+        */
+    </script>
+</body>
+</html>
