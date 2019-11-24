@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+#box{
+    width:100px;
+    height:100px;
+    position: absolute;
+    top:0;
+    left:0;
+    background: lightskyblue;
+}
+
+</style>
+</head>
+<body>
+    <div id="box"></div>
+ <script>
+   /*
+       三大事件组成：
+         onmousedown
+         onmousemove
+         onmouseup
+
+      先要触发down，然后才能move和up   
+   */    
+   box.onmousedown = function(){
+    //    console.log('down')
+    let disx = ev.pageX;  //按下的作用
+    let disY = ev.pageY;
+
+    let t = box.offsetTop;
+    let l = box.offsetLeft;
+    box.onmousemove = function(ev){
+        console.log('move')
+        // 移动的坐标
+    }
+   }
+</script>
+</body>
+</html>
