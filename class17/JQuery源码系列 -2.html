@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+     构造函数：
+       不能在外面new，但是如果在里面new那么就出现了递归。
+
+    作用域：全局
+           局部：函数
+                 块级   
+    
+    */ 
+   
+    // function fn(){
+    //     var a = 10;
+    //     return function(){
+    //         console.log(a);
+    //     }
+    // }
+    // let f = fn();
+
+
+    /*
+       global为了找到this
+       
+      typeof this ！==  'undefined'?window:this
+     */
+
+
+     (function(g,fn){
+        factory(global);
+     })(this,function(global,Noglobal){   // Noglobal就是undefined，在低版本的浏览器上会被修改
+        console.log(Noglobal);
+     })
+
+
+     if(obj.x === Noglobal){
+     }
+
+
+     function myQuery(){
+         //因为不能new自己，所以创建一个$函数作为替身，这个替身拥有myQuery的所有方法和属性
+         return new fn.init; // new myQuery; 递归
+     }
+
+
+     let fn  = myQuery.prototype = {
+         v:'v.x',
+         constructor:myQuery,
+         css:function(){
+             console.log(1);
+         }
+     }
+       fn.init = function(){
+
+       }
+
+
+       /*
+          低版本中的undefined会被修改
+       */
+      var undefined = 1;
+      console.log(undefined)   // 低版本浏览器下，undefined非常容易被修改，所以Noglobal的意思就是不会被修改的undefined
+
+
+      $().css();
+
+    //   //function fn(){
+    //       window.a = 10;
+    //       return a;
+    //   }
+     </script>
+</body>
+</html>
