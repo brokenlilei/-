@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+           js既能同步也能异步
+ 
+           同步的时候就走主线程；
+           异步的时候就走异步队列，然后主线程执行异步代码
+ 
+           异步编程哪里不好？
+ 
+                 代码不是从上到下的方式来解读代码，要考虑到同步异步的情况，
+                 会干扰到判断。假如用回调函数的方式来解决同步异步的问题，就
+                 会容易出现回调地狱的情况。
+ 
+                 从上往下的解读代码方式，方便开发人员进行后期的调试和维护
+ 
+                 而promise就是为了解决异步的编程问题
+ 
+                 new Promise((resolve,reject) =>{
+                         // 放入异步代码，然后把代码结果放到resolve或者reject上
+                 });
+ 
+                 then().then()
+                 console.log(a);
+ 
+            代码有可能在执行过程中，会出现报错的情况，为了防止该代码报错，使用try，catch包一下
+            就不会阻止错误代码下面的代码继续运行了。
+            格式：try{}catch{}
+ 
+ 
+            JSON ---> 数据结构的本质就是字符串，像JS对象或者数组
+ 
+            JSON.parse()  --> 必须是标准格式，不是就是报错
+                          --> 作用：将json字符串转换成json对象。
+ 
+                              语法：JSON. parse(text[,reviver]).
+ 
+                              参数：text  必须；一个有效的json字符串。
+ 
+                              reviver  可选。
+ 
+                              返回值：一个对象或数组。
+ 
+ 
+           JSON.stringify  -->   作用：把对象转为JSON(函数和undefined会过滤掉)
+                           -->   语法：JSON.stringify(value [, replacer] [, space])
+ 
+                                 参数：value  必须；通常为对象或数组。
+ 
+                                 replacer 可选，用于转换结果的函数或者数组。
+ 
+                                 space 可选。向返回值 JSON 文本添加缩进、空格和换行符以使其更易于读取。
+ 
+                                返回值：一个包含JSON文本的字符串。
+        */
+
+
+        // let a = 10;
+        // while(ture){
+
+        // }
+        // setTimeout(() =>{
+        //     a = 20;
+        // },0);
+        // console.log(a);
+
+
+        // function fn(){
+        //     b;
+        //     console.log(b);
+        //     try{
+        //         b;
+        //         console.log(b);
+        //     }catch(e){
+        //         console.log(e);
+        //         setTimeout(() =>{
+        //             b = 20;
+        //             fn();
+        //         },2000);
+        //     }
+        // }
+        // fn();
+        // console.log(1);
+
+
+
+
+    //     myPromise((resolve,reject)=>{
+    //         resolve();
+    //         console.log(123);
+    //         b;
+    //     });
+
+    //     function myPromise(callback){
+    //         let resolve = function(){
+    //             // resolve
+    //         }
+    //             let reject = function(){
+    //                 // reject
+    //             }
+    //            try{
+    //                callback(resolve,reject);
+    //            }catch(e){
+
+    //            } 
+    //         }
+      
+
+    //   console.log(JSON.stringify({name:'尹'}));
+
+
+
+    let j = JSON.stringify({name:'尹',age:9},function(key,val){
+        if(key === 'age'){
+            val = val<10?'0'+val:''+val;
+        }
+        return val;
+    });
+    console.log(j);
+
+
+
+    new Promise((s,j) =>j()).then(()=>{
+        console.log(1);
+    },()=>{
+        console.log(2);
+    }).catch(()=>{
+        console.log(3);
+    })
+    </script>
+</body>
+
+</html>
