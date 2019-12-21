@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+ <script>
+  
+ /*
+    调用 Generator 函数后，该函数并不执行，返回的也不是函数函数运行结果，
+    而是一个指向内部状态的指针对象，也就是上一张介绍的遍历器对象（Iterator Object）
+
+    总结一下，调用 Generator 函数，返回一个遍历器对象，
+    代表 Generator 函数的内部指针。一开始函数是不会执行的，因为它是个状态对象
+
+    如何让这个Generator函数执行呢？
+
+    每次调用遍历器对象的next方法，就会返回一个有着value和done两个属性的对象。
+    {value:xx,done:false}
+
+    value属性表示当前的内部状态的值，是yield或者return表达式后面那个表达式的值；
+
+    done属性是一个布尔值，表示是否遍历结束。
+    false代表没结束，true代表结束了
+ 
+ */
+
+//  function* fn(){
+//      console.log(1);
+//      yield 'hello';
+//      consople.log(2);
+//      return 5;
+//  }
+
+//  let f = fn();
+//  console.lgo( f.next() );
+//  console.log(f.next());
+//  console.log(f.next());
+
+
+//    function* gen(){
+//        yield 2 + 1;
+//    }
+//    console.log( gen().next().value );
+
+
+    //  function* fn(){        //同步变成函数，这个函数就算有异步代码也按照同步的执行顺序执行
+    //     console.log(1);
+    //     let  a = yield;   // 异步的数据已经到手了;
+    //     console.log(a);
+    //     console.log(2);
+    //  }
+
+
+
+    //  let f = fn();
+    //  f.next();
+    //  setTimeout(()=>{
+    //      f.next('异步的数据已经到手');
+    //  },2000);
+
+
+    //  function* foo(){
+    //      var y = 2 * (yield(x+1));
+    //      var z = yield y;
+    //      return (x + y + z );
+    //  }
+
+//    var a = foo(5);  //遍历对象
+
+//    a.next();     //{value:6,done:false}
+//    a.next(12);   //{value:(2*12)/3,done:false}    //这一次next的参数就是上一次yield的返回值
+//    console.log(a.next(12));
+
+
+//    function* fmm(){
+//        yield '1';
+//        yield '2';
+//    }
+
+//    function* ff(){
+//        yield* fmm();
+//        yield '3';
+//    }
+
+//    for(let i of ff()){
+//        console.log(i);
+//    }
+
+
+
+
+
+// function* aa(){
+//     console.log(this);
+//     // this.a = 11;
+// }
+  
+//   let obj = {}
+//   let a = aa();   //aa.call(obj);
+//   a.next();
+//   console.log(obj.a);
+ </script>    
+</body>
+</html>
