@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <div id="app">
+        <input
+           type="text"
+           v-model="txt"
+           @keyup.13="add"
+           />
+       <ul>
+           <li v-for="(val) in ary">
+               <input type="checkbox" v-model="val.checked"/>
+               <span>{{val.val}}</span>
+           </li>
+       </ul> 
+       {{ary}}   
+    </div>
+    <script src="vue.js"></script>
+    <script>
+    /*
+      computed和watch的区别是什么?
+
+      computed和watch都是监听数据，不同的是
+      computed一上来就触发一次，如果数据改变再继续触发，
+      watch是一上来不会立刻马上触发，只有数据改变后才会触发，
+      watch还可以深度监听内部细节。
+    */
+
+    new Vue({
+        el:'#app',
+        data:{
+            txt:'',
+            ary:getIem()
+        },
+        methods:{
+            add(){
+                this.ary.unshift({
+                    id:Date.now(),
+                    val:this.txt,
+                    checked:false
+                });
+                this.txt = '';
+            }
+        },
+        
+        // watch监听的都是data中的数据
+        // watch默认只能监听一层数据，如果有多层是监听不到的
+        watch:{
+            // ary(){
+            //     console.log('触发');
+            //     localStorage.setItem('data',JSON.stringify(this.ary))
+            // }
+            ary:{
+                handler(val,oldVal){
+                    localStorage.setItem('data',JSON.stringify(val))
+                    // console.log('新'+JSON.stringify(val))
+                    // console.info('旧'+JSON.stringify(oldVal))
+                },
+                // 深度监听
+                deep:true
+            }
+        }
+    });
+
+
+    function getIem(){
+        let v = localStorage.getItem('data');
+        return v && JSON.parse(v) || [{
+            id:0,
+            val:'vue真的好学',
+            checked:true
+        },{
+            id:1,
+            val:'vue真的简单',
+            checked:false
+        }]
+    }
+    </script>
+</body>
+</html>
